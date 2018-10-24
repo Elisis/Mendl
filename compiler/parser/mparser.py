@@ -5,8 +5,8 @@ class Parser():
 	def __init__(self, module, builder, outf):
 		self.pg = ParserGenerator(
 		#A list of token names accepted by the parser.
-		['NUMBER', 'OUT', 'OPEN_PAREN', 'CLOSE_PAREN',
-		'SEMI_COLON', 'SUM', 'SUB']
+		['NUMBER', 'OUT', 'IF', 'OPEN_BRACE', 'CLOSE_BRACE', 'OPEN_PAREN', 'CLOSE_PAREN',
+		'SEMI_COLON', 'SUM', 'SUB', 'MULTIPLY']
 	
 		)
 		self.module = module
@@ -17,7 +17,8 @@ class Parser():
 		@self.pg.production('program : OUT OPEN_PAREN expression CLOSE_PAREN SEMI_COLON')
 		def program(p):
 			return Out(self.builder, self.module, self.outf, p[2])
-			
+		
+		@self.pg.production('expression : expression MULTIPLY expression')	
 		@self.pg.production('expression : expression SUM expression')
 		@self.pg.production('expression : expression SUB expression')
 		def expression(p):
@@ -30,6 +31,9 @@ class Parser():
 			
 			elif operator.gettokentype() == 'SUB':
 				return Sub(self.builder, self.module, left, right)
+				
+			elif operator.gettokentype() == 'MULTIPLY':
+				return Multiply(self.builder, self.module, left, right)
 		
 		@self.pg.production('expression : NUMBER')
 		def number(p):

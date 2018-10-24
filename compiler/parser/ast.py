@@ -1,5 +1,6 @@
 from llvmlite import ir
 
+
 class Number():
 	def __init__(self, builder, module, value):
 		self.builder = builder
@@ -19,13 +20,17 @@ class BinaryOp():
 		
 class Sum(BinaryOp):
 	def eval(self):
-		i = self.builder.add(self.left.eval() + self.right.eval())
+		i = self.builder.add(self.left.eval(), self.right.eval())
 		return i
 
 class Sub(BinaryOp):
 	def eval(self):
-		i = self.builder.sub(self.left.eval() - self.right.eval())
+		i = self.builder.sub(self.left.eval(), self.right.eval())
 		return i
+		
+class Multiply(BinaryOp):
+	def eval(self):
+		i = self.builder.multiply
 		
 class Out():
 	def __init__(self, builder, module, outf, value):

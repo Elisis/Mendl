@@ -37,7 +37,7 @@ class CodeGen():
 		#Declare Outf function
 		voidptr_ty = ir.IntType(8).as_pointer()
 		outf_ty = ir.FunctionType(ir.IntType(32), [voidptr_ty], var_arg=True)
-		outf = ir.Function(self.module, outf_ty, name="outf")
+		outf = ir.Function(self.module, outf_ty, name="printf")
 		self.outf = outf
 		
 	def _compile_ir(self):
