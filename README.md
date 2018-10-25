@@ -1,4 +1,5 @@
 ![Mendl Logo](logo.jpg)
+
 A simple programming language.
 
-test
+Uses LLVM and RPLY.
