@@ -1,12 +1,17 @@
 from rply import ParserGenerator
-from ast import Number, Sum, Sub, Out
+from ast import Number, Sum, Sub, Out, Multiply
 
 class Parser():
 	def __init__(self, module, builder, outf):
 		self.pg = ParserGenerator(
 		#A list of token names accepted by the parser.
 		['NUMBER', 'OUT', 'IF', 'OPEN_BRACE', 'CLOSE_BRACE', 'OPEN_PAREN', 'CLOSE_PAREN',
-		'SEMI_COLON', 'SUM', 'SUB', 'MULTIPLY']
+		'SEMI_COLON', 'SUM', 'SUB', 'MULTIPLY'],
+		
+		precedence = [
+			('left', ['SUM', 'SUB']),
+			('left', ['MULTIPLY'])
+		]
 	
 		)
 		self.module = module

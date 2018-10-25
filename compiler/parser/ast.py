@@ -30,7 +30,8 @@ class Sub(BinaryOp):
 		
 class Multiply(BinaryOp):
 	def eval(self):
-		i = self.builder.multiply
+		i = self.builder.mul(self.left.eval(), self.right.eval())
+		return i
 		
 class Out():
 	def __init__(self, builder, module, outf, value):
