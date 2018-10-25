@@ -1,4 +1,4 @@
-![Mendl Logo](github.com/Elisis/Mendl/logo.jpg)
+![Mendl Logo](logo.jpg)
 A simple programming language.
 
 test
